@@ -9,14 +9,16 @@ const OutputDisplay = ({isCaptureMode}) => {
 
 
 
-  useEffect(()=>{
-    fetch('http://127.0.0.1:5000/text')
-    .then(response => {
-      console.log("I am here")
-    })
-    .then(data=> setOutput(data))
-    .catch(error => console.log(error));
-  }, []);
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+      fetch('http://127.0.0.1:5000/text')
+      .then(response => response.text())
+      .then(data => {setOutput(data)})
+      .catch(error => console.log(error));},2000)
+    },[]);
+
+
 
 
       if (isCaptureMode) {
@@ -24,8 +26,7 @@ const OutputDisplay = ({isCaptureMode}) => {
           <Box>
             <Box>
               <Typography variant="body2">
-                Press "Capture Photo" to take the picture of an ingredients list,
-                and information about the ingredients will appear here automatically.
+                {output}
               </Typography>
             </Box>
           </Box>

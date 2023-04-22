@@ -7,6 +7,9 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
+import cv2
+import numpy as np 
+
 
 app = Flask(__name__)
 ##cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -18,7 +21,7 @@ app = Flask(__name__)
     # unsharp_mask = cv2.subtract(gray_img, blurred)
     # sharpened = cv2.addWeighted(gray_img, 1.5, unsharp_mask, -0.5, 0)
     
-output=""
+output="hello"
 @app.route('/image',methods = ['POST'])
 @cross_origin()
 def handle_image():
@@ -26,8 +29,13 @@ def handle_image():
     base64_data = s.split(',')[1]
     binary_data = base64.b64decode(base64_data)
     image = Image.open(BytesIO(binary_data))
-    text = pytesseract.image_to_string(image)
-    output=text
+    gray_img = image.convert('L')
+    # ret, binary_img = cv2.threshold(np.array(gray_img), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # pil_img = Image.fromarray(binary_img)
+    # pil_img.show()
+    text = pytesseract.image_to_string(gray_img)
+    global output
+    output=text[:-1]
     print(text[:-1])
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
@@ -37,8 +45,11 @@ def handle_image():
 
 
 @app.route('/text',methods = ['Get'])
+@cross_origin()
 def send_text():
-    return output
+    print("Hey What's up")
+    global output
+    return str(output)
 
 
 if __name__ == '__main__':
