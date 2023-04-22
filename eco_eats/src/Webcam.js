@@ -3,7 +3,10 @@ import Webcam from "react-webcam";
 import { Button, Box } from '@mui/material';
 
 
+const VIDEO_WIDTH = 280;
+
 const videoConstraints = {
+  // The height and width here are not the dimensions of the video on the user's screen
   width: 1280,
   height: 720,
   facingMode: "environment"
@@ -20,7 +23,7 @@ const WebcamCapture = () => {
       <Webcam
         audio={false}
         screenshotFormat="image/jpeg"
-        width={280}
+        width={VIDEO_WIDTH}
         videoConstraints={videoConstraints}
       >
         {({ getScreenshot }) => (
@@ -42,7 +45,8 @@ const WebcamCapture = () => {
       <>
         <img
           src={imgSrc}
-          width={280}
+          width={VIDEO_WIDTH}
+          alt="your capture here"
         />
         <Box m={1}>
           <Button
