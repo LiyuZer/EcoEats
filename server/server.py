@@ -28,6 +28,8 @@ def handle_image():
     image = Image.open(BytesIO(binary_data))
     text = pytesseract.image_to_string(image)
     output=text
+    print(text[:-1])
+    print("I am here")
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
     # cv2.waitKey(0)
@@ -37,7 +39,6 @@ def handle_image():
 
 @app.route('/text',methods = ['Get'])
 def send_text():
-    print("Output")
     return output
 
 
