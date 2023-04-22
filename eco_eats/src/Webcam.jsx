@@ -41,9 +41,13 @@ const WebcamCapture = () => {
             <Button
               variant="contained"
               onClick={() => {
-                setImgSrc(getScreenshot());
-                setIsCaptureMode(!isCaptureMode);
-                sendImage(imgSrc)
+                const newImgSrc = getScreenshot();
+                console.log(newImgSrc);
+                if (newImgSrc !== null) {
+                  setImgSrc(newImgSrc);
+                  setIsCaptureMode(!isCaptureMode);
+                  sendImage(newImgSrc);
+                }
               }
             }
             >
