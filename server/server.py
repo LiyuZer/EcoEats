@@ -29,7 +29,6 @@ def handle_image():
     text = pytesseract.image_to_string(image)
     output=text
     print(text[:-1])
-    print("I am here")
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
     # cv2.waitKey(0)
