@@ -10,11 +10,12 @@ const OutputDisplay = ({isCaptureMode}) => {
 
 
   useEffect(()=>{
-    axios.get('http://127.0.0.1:5000/text')
+    fetch('http://127.0.0.1:5000/text')
     .then(response => {
-      setOutput(response.data);
       console.log("I am here")
-    });
+    })
+    .then(data=> setOutput(data))
+    .catch(error => console.log(error));
   }, []);
 
 
