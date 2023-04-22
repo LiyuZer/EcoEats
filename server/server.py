@@ -7,8 +7,6 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
-import matplotlib.pyplot as plt
-import cv2
 
 app = Flask(__name__)
 ##cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -29,7 +27,7 @@ def handle_image():
     binary_data = base64.b64decode(base64_data)
     image = Image.open(BytesIO(binary_data))
     text = pytesseract.image_to_string(image)
-    print(text[:-1])
+    output=text
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
     # cv2.waitKey(0)
@@ -37,16 +35,10 @@ def handle_image():
     return "Submitted"
 
 
-@app.route('/image',methods = ['POST'])
-@cross_origin()
-def handle_image():
-    s=request.json['data']
-    base64_data = s.split(',')[1]
-    binary_data = base64.b64decode(base64_data)
-    image = Image.open(BytesIO(binary_data))
-
-    image.show()
-    return "Submitted"
+@app.route('/text',methods = ['Get'])
+def send_text():
+    print("Output")
+    return output
 
 
 if __name__ == '__main__':

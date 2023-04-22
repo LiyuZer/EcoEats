@@ -1,9 +1,10 @@
 import React from "react";
 import { Typography, Box } from '@mui/material';
+import axios from 'axios';
 
 
 const OutputDisplay = () => {
-  
+  const [output, setOutput] = React.useState('');
 
   const readIngredients = `RICE, WHOLE GRAIN WHEAT, SUGAR/GLUCOSE-
   FRUCTOSE, SOY PROTEIN, WHOLE GRAIN OATS, SOY
@@ -19,19 +20,27 @@ const OutputDisplay = () => {
   ALMITATE, THIAMINE HYDROCHLORIDE, RIBOFLAVIN,
   ACID, POTASSIUM IODIDE, CHOLECALCIFEROI..`;
 
+  const getText = async (imgSrc) => {
+    console.log("I am here");
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/text');
+      setOutput(response)
+    } catch (error) {
+      console.error(error);
+    }
+  }; 
 
-  const summary = "The following are some ingredients: Rice, Sugar";
   return (
     <Box>
       <Box>
         <Typography variant="body2">
-          {readIngredients}
+          {output}
         </Typography>
       </Box>
 
       <Box>
         <Typography variant="body2" color="#1e3fae" sx={{ fontWeight: 'bold' }}>
-          {summary}
+          {output}
         </Typography>
       </Box>
     </Box>
