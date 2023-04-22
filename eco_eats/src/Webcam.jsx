@@ -1,6 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 import { Button, Box } from '@mui/material';
+import axios from 'axios';
 
 
 const VIDEO_WIDTH = 280;
@@ -16,6 +17,15 @@ const WebcamCapture = () => {
   const [isCaptureMode, setIsCaptureMode] = React.useState(true);
 
   const [imgSrc, setImgSrc] = React.useState(null);
+
+  const sendImage = async (imgSrc) => {
+    console.log("I am here");
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/image', { data: imgSrc });
+    } catch (error) {
+      console.error(error);
+    }
+  }; 
 
   return (
   <>
@@ -33,7 +43,9 @@ const WebcamCapture = () => {
               onClick={() => {
                 setImgSrc(getScreenshot());
                 setIsCaptureMode(!isCaptureMode);
-              }}
+                sendImage(imgSrc)
+              }
+            }
             >
               Capture photo
             </Button>
