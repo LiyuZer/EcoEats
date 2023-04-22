@@ -25,4 +25,7 @@ function App() {
   );
 }
 
+export const SERVER_URL = 'ecoeats.xyz';
+// export const SERVER_URL = 'localhost';
+
 export default App;

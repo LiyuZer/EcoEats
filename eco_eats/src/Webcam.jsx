@@ -2,7 +2,9 @@ import React from "react";
 import Webcam from "react-webcam";
 import { Button, Box } from '@mui/material';
 import axios from 'axios';
+import { SERVER_URL } from "./App";
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const videoConstraints = {
   // The height and width here are not the dimensions of the video on the user's screen
@@ -18,7 +20,7 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
   const sendImage = async (imgSrc) => {
     console.log("I am here");
     try {
-      const response = await axios.post('http://127.0.0.1:5000/image', { data: imgSrc });
+      const response = await axios.post(`https://${SERVER_URL}:5000/image`, { data: imgSrc });
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +43,6 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
                   variant="contained"
                   onClick={() => {
                     const newImgSrc = getScreenshot();
-                    console.log(newImgSrc);
                     if (newImgSrc !== null) {
                       setImgSrc(newImgSrc);
                       setIsCaptureMode(!isCaptureMode);

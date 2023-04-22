@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Typography, Box } from '@mui/material';
 import axios from 'axios';
-
+import { SERVER_URL } from "./App";
 
 const OutputDisplay = ({isCaptureMode}) => {
   const [output, setOutput] = React.useState('');
@@ -12,7 +12,7 @@ const OutputDisplay = ({isCaptureMode}) => {
   useEffect(() => {
 
     const interval = setInterval(() => {
-      fetch('http://127.0.0.1:5000/text')
+      fetch(`http://${SERVER_URL}:5000/text`)
       .then(response => response.text())
       .then(data => {setOutput(data)})
       .catch(error => console.log(error));},2000)
