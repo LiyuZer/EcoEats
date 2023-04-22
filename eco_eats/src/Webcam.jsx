@@ -13,8 +13,7 @@ const videoConstraints = {
   facingMode: "environment"
 };
 
-const WebcamCapture = () => {
-  const [isCaptureMode, setIsCaptureMode] = React.useState(true);
+const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
 
   const [imgSrc, setImgSrc] = React.useState(null);
 

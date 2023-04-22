@@ -3,8 +3,22 @@ import { Typography, Box } from '@mui/material';
 import axios from 'axios';
 
 
-const OutputDisplay = () => {
+const OutputDisplay = ({isCaptureMode}) => {
   const [output, setOutput] = React.useState('');
+
+  if (isCaptureMode) {
+    return (
+      <Box>
+        <Box>
+          <Typography variant="body2">
+            Press "Capture Photo" to take the picture of an ingredients list,
+            and information about the ingredients will appear here automatically.
+          </Typography>
+        </Box>
+      </Box>
+    );
+  }
+  
 
   const readIngredients = `RICE, WHOLE GRAIN WHEAT, SUGAR/GLUCOSE-
   FRUCTOSE, SOY PROTEIN, WHOLE GRAIN OATS, SOY
