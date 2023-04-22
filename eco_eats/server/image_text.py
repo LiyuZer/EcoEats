@@ -25,20 +25,20 @@ import cv2
 # print(text[:-1])
 
 # read the image file
-img = cv2.imread("/Users/liyuzerihun/Desktop/ing.png")
+img = cv2.imread("/Users/liyuzerihun/Desktop/IT.jpg")
 
 # convert the image to grayscale
-gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-blurred = cv2.GaussianBlur(gray_img, (5, 5), 0)
-unsharp_mask = cv2.subtract(gray_img, blurred)
-sharpened = cv2.addWeighted(gray_img, 1.5, unsharp_mask, -0.5, 0)
+# blurred = cv2.GaussianBlur(gray_img, (5, 5), 0)
+# unsharp_mask = cv2.subtract(gray_img, blurred)
+# sharpened = cv2.addWeighted(gray_img, 1.5, gray_img, -0.5, 0)
 
 
 # draw contours
-text = pytesseract.image_to_string(sharpened)
+text = pytesseract.image_to_string(img)
 print(text[:-1])
 # save the processed image
-cv2.imshow("Processed Image", sharpened)
+cv2.imshow("Processed Image", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
