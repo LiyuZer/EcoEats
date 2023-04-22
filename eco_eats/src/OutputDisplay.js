@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Box } from '@mui/material';
 import axios from 'axios';
 
@@ -6,43 +6,30 @@ import axios from 'axios';
 const OutputDisplay = ({isCaptureMode}) => {
   const [output, setOutput] = React.useState('');
 
-  if (isCaptureMode) {
-    return (
-      <Box>
-        <Box>
-          <Typography variant="body2">
-            Press "Capture Photo" to take the picture of an ingredients list,
-            and information about the ingredients will appear here automatically.
-          </Typography>
-        </Box>
-      </Box>
-    );
-  }
-  
 
-  const readIngredients = `RICE, WHOLE GRAIN WHEAT, SUGAR/GLUCOSE-
-  FRUCTOSE, SOY PROTEIN, WHOLE GRAIN OATS, SOY
-  PROTEIN CONCENTRATE, VEGETABLE OIL, BROWN SUGAR
-  SYRUP, RICE FLOUR, SALT, VEGETABLE Oil SHORTENING
-  HONEY, BARLEY MALT SYRUP, MOLASSES, COLOUR,
-  CINNAMON, ARTIFICIAL FLAVOUR, SOY LECITHIN, BHT,
-  CITRIC ACID,
-  VITAMINS AND MINERALS: SODIUM L-ASCORBATE,
-  ALPHA TOCOPHEROL, NIACINAMIDE, ASCORBIC ACID,
-  ZINC OXIDE, BIOTIN, ¢-CALCIUM PANTOTHENATE, IRON
-  PPER OXIDE, PYRIDOXINE HYDROCHLORIDE, VITAMIN
-  ALMITATE, THIAMINE HYDROCHLORIDE, RIBOFLAVIN,
-  ACID, POTASSIUM IODIDE, CHOLECALCIFEROI..`;
 
-  const getText = async (imgSrc) => {
-    console.log("I am here");
-    try {
-      const response = await axios.get('http://127.0.0.1:5000/text');
-      setOutput(response)
-    } catch (error) {
-      console.error(error);
-    }
-  }; 
+
+  useEffect(()=>{
+    axios.get('http://127.0.0.1:5000/text')
+    .then(response => {
+      setOutput(response.data);
+      console.log("I am here")
+    });
+  }, []);
+
+
+      if (isCaptureMode) {
+        return (
+          <Box>
+            <Box>
+              <Typography variant="body2">
+                Press "Capture Photo" to take the picture of an ingredients list,
+                and information about the ingredients will appear here automatically.
+              </Typography>
+            </Box>
+          </Box>
+        );
+      }
 
   return (
     <Box>
