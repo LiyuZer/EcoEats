@@ -4,8 +4,6 @@ import { Button, Box } from '@mui/material';
 import axios from 'axios';
 
 
-const VIDEO_WIDTH = 280;
-
 const videoConstraints = {
   // The height and width here are not the dimensions of the video on the user's screen
   width: 1280,
@@ -28,39 +26,42 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
 
   return (
   <>
+    <Box width="100%" display="flex" flexDirection="column" alignItems="center">
     {isCaptureMode && 
-      <Webcam
-        audio={false}
-        screenshotFormat="image/jpeg"
-        width={VIDEO_WIDTH}
-        videoConstraints={videoConstraints}
-      >
-        {({ getScreenshot }) => (
-          <Box m={1}>
-            <Button
-              variant="contained"
-              onClick={() => {
-                const newImgSrc = getScreenshot();
-                console.log(newImgSrc);
-                if (newImgSrc !== null) {
-                  setImgSrc(newImgSrc);
-                  setIsCaptureMode(!isCaptureMode);
-                  sendImage(newImgSrc);
+      
+        <Box width="85vw">
+          <Webcam
+            audio={false}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+          >
+            {({ getScreenshot }) => (
+              <Box m={1}>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    const newImgSrc = getScreenshot();
+                    console.log(newImgSrc);
+                    if (newImgSrc !== null) {
+                      setImgSrc(newImgSrc);
+                      setIsCaptureMode(!isCaptureMode);
+                      sendImage(newImgSrc);
+                    }
+                  }
                 }
-              }
-            }
-            >
-              Capture photo
-            </Button>
-          </Box>
-        )}
-      </Webcam>
+                >
+                  Capture photo
+                </Button>
+              </Box>
+            )}
+          </Webcam>
+        </Box>
+      
     }
     {!isCaptureMode && (
       <>
         <img
           src={imgSrc}
-          width={VIDEO_WIDTH}
           alt="your capture here"
         />
         <Box m={1}>
@@ -76,6 +77,8 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
       </>
       )
     }
+
+    </Box>
   </>);
 
 };
