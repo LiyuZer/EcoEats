@@ -42,7 +42,6 @@ def sendIconList():
     print("Getting for the icon list")
     if uuid in my_dict.keys():
         word_list = my_dict[uuid].split(', ')
-        print(my_dict[uuid])
         return ingredient_classifier.return_string(word_list)
     else:
         return "0000000"
