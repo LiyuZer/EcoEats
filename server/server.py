@@ -31,7 +31,7 @@ def sendText():
     if uuid in my_dict.keys():
         return str(my_dict[request.args.get('param1')])
     else:
-        return "Waiting for Image :)", 404
+        return "UUID not found", 404
 
 
 @app.route('/icons', methods=['GET'])
