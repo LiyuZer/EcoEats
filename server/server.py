@@ -7,11 +7,11 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
-import cv2
-import numpy as np 
+from google.cloud import vision_v1
+from google.oauth2.service_account import Credentials
 
-credentials = Credentials.from_service_account_file('/Users/liyuzerihun/EcoEats/hack-eco-a2b68f2e4484.json')
-client = vision.ImageAnnotatorClient(credentials=credentials)
+credentials = Credentials.from_service_account_file('..//hack-eco-a2b68f2e4484.json')
+client = vision_v1.ImageAnnotatorClient(credentials=credentials)
 
 app = Flask(__name__)
 ##cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
