@@ -30,17 +30,17 @@ def calculate_similarity(a, b):
   return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 def is_vegan(ingredients):
-    ingredient_embeddings = co.embed(ingredients).embeddings
-    vegan_embeddings = co.embed(non_vegan).embeddings
+    # ingredient_embeddings = co.embed(ingredients).embeddings
+    # vegan_embeddings = co.embed(non_vegan).embeddings
     for ingredient in ingredients:
         if ingredient.strip() in non_vegan:
             return False            
-    for i, ing_embedding in enumerate(ingredient_embeddings):
-        for j, veg_embedding in enumerate(vegan_embeddings):
-            if calculate_similarity(ing_embedding, veg_embedding) > 0.7:
-                return False
-    if is_egg_free(ingredients) == False:
-        return False
+    # for i, ing_embedding in enumerate(ingredient_embeddings):
+    #     for j, veg_embedding in enumerate(vegan_embeddings):
+    #         if calculate_similarity(ing_embedding, veg_embedding) > 0.7:
+    #             return False
+    # if is_egg_free(ingredients) == False:
+    #     return False
     return True
 
 def is_vegetarian(ingredients):
