@@ -11,6 +11,27 @@ import dairy from "./dairy.png"
 import gluten from "./gluten.png"
 import Tooltip from '@mui/material/Tooltip';
 import myImage from './logo.png';
+import cloud from './cloud.png';
+
+const HIGH_CARBON_ITEMS = [
+"soybean oil",
+"pork",
+"palm oil",
+"crustaceans",
+"shrimp",
+"crab",
+"clam",
+"coffee",
+"chocolate",
+"dark chocolate",
+"beef",
+"bovine meat",
+"cheese",
+"lamb",
+"mutton",
+"roast beef",
+"chicken",
+]
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
@@ -51,6 +72,35 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
       </Box>
     );
   }
+
+  const isVegan = returnIcon(0);
+  const isVegetarian = returnIcon(1);
+  const hasEgg = returnIcon(6);
+
+  let numClouds = 0;
+
+  if (isVegan && isVegetarian) {
+    numClouds = 1;
+  }
+  else if (hasEgg) {
+    numClouds = 2;
+  }
+  else {
+    numClouds = 2;
+  }
+
+  // if there's an ingredient in HIGH_CARBON_ITEMS then numClouds = 3;
+  output.split(",")
+    .map(s => s.trim())
+    .map(s => s.toLowerCase())
+    .forEach(
+      s => {
+        if (HIGH_CARBON_ITEMS.includes(s)) {
+          numClouds = 3;
+        }
+      }
+    )
+
 
   return (
     <Box>
@@ -125,7 +175,13 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
         <div></div>
         } 
       </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+      {
+        [...Array(numClouds).keys()].map(() => <img src={cloud} style={{ width: '50px', height: '50px', marginRight: '0px', marginBottom: '10px' }} />)
+      }
+      </Box>
     </Box>
+    
   );
 
 };
