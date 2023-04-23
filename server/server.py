@@ -29,10 +29,15 @@ app = Flask(__name__)
     # sharpened = cv2.addWeighted(gray_img, 1.5, unsharp_mask, -0.5, 0)
     
 output="hello"
+my_dict={}
 @app.route('/image',methods = ['POST'])
 @cross_origin()
 def handle_image():
+    global output, my_dict
     s=request.json['data']
+    uid = request.json['uniqueID']
+    print("Post")
+    print(uid)
     base64_data = s.split(',')[1]
     binary_data = base64.b64decode(base64_data)
     image = Image.open(BytesIO(binary_data))
@@ -48,8 +53,6 @@ def handle_image():
     img_bytes = img_byte_arr.getvalue()
     response = client.text_detection(image=vision_v1.types.Image(content=img_bytes))
     text = response.full_text_annotation.text
-    global output
-
     input =  text
     prompt = input + "\n isolate all words after the word INGREDIENTS until empty line"
 
@@ -60,8 +63,7 @@ def handle_image():
     temperature=0.750)
 
     intro_paragraph = response.generations[0].text
-    print(text)
-    output=intro_paragraph
+    my_dict[uid]=intro_paragraph
 
 
     # save the processed image
@@ -71,13 +73,17 @@ def handle_image():
     return "Submitted"
 
 
-@app.route('/text',methods = ['Get'])
+@app.route('/text', methods=['GET'])
 @cross_origin()
-def send_text():
-    print("Hey What's up")
-    global output
-    return str(output)
-
+def sendText():
+    global my_dict
+    uuid=request.args.get('param1')
+    print("Get")
+    print(uuid)
+    if uuid in my_dict.keys():
+        return str(my_dict[request.args.get('param1')])
+    else:
+        return "UUID not found", 404
 
 IS_PRODUCTION_BUILD = False
 

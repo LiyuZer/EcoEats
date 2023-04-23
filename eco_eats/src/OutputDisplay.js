@@ -14,11 +14,9 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
 
 
-
-
   useEffect(() => {
     const interval = setInterval(() => {
-    axios.get(`https://${SERVER_URL}/text`, {uniqueID: currentUUID})
+    fetch(`${SERVER_URL}/text?param1=${currentUUID}`)
       .then(response => response.text())
       .then(data => {setOutput(data)})
       .catch(error => console.log(error));}, 2000)
