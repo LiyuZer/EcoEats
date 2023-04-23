@@ -5,7 +5,10 @@ import { SERVER_URL } from "./App";
 import vegan from "./vegan.png"
 import vegetarian from "./vegetarian.png"
 import peanut from "./peanut.png"
-
+import treenut from "./treenut.png"
+import egg from "./egg.png"
+import dairy from "./dairy.png"
+import gluten from "./gluten.png"
 
 const OutputDisplay = ({isCaptureMode}) => {
   const [output, setOutput] = React.useState('');
@@ -56,9 +59,11 @@ const OutputDisplay = ({isCaptureMode}) => {
         <img src= {vegan} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         <img src= {vegetarian} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
         <img src= {peanut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
-      
+        <img src = {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        <img src = {treenut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        <img src = {dairy} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        <img src = {egg} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
       </Box>
-
     </Box>
   );
 
