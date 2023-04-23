@@ -50,8 +50,10 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode, currentUUID }) => {
                       setIsCaptureMode(!isCaptureMode);
                       sendImage(newImgSrc);
                     }
-                  }
-                }
+                  }}
+                  style={{
+                      backgroundColor: "#325218",
+                  }}
                 >
                   Capture photo
                 </Button>
@@ -73,6 +75,9 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode, currentUUID }) => {
             variant="contained"
             onClick={() => {
               setIsCaptureMode(!isCaptureMode);
+            }}
+            style={{
+                backgroundColor: "#325218",
             }}
           >
             Retake

@@ -17,25 +17,24 @@ function App() {
 // },[]);
   return (
     <div className="App">
-      <div
-  style={{
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    width: '100px',
-    height: '100px',
-    backgroundImage: `url(${myImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    zIndex: 9999, // to ensure it is displayed above other elements
-  }}
-/>
-
-      <Box m={1}>
+      <Box display="flex" flexDirection="row" m={1} mb={-1} width="100%" justifyContent="center">
         <Typography variant="h3" style={{ fontFamily: 'Yatra One' }}>
           Eco Eats
         </Typography>
+        <div
+          style={{
+            width: '50px',
+            height: '50px',
+            backgroundImage: `url(${myImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
+            zIndex: 9999, // to ensure it is displayed above other elements
+          }}
+        />
       </Box>
+      <Typography variant="subtitle2" style={{ fontFamily: 'Yatra One' }}>
+          Let's taco 'bout sustainable eating!
+      </Typography>
       <WebcamCapture 
         isCaptureMode={isCaptureMode}
         setIsCaptureMode={setIsCaptureMode}
