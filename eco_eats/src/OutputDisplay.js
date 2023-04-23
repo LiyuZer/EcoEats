@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { Typography, Box } from '@mui/material';
 import axios from 'axios';
+import { SERVER_URL } from "./App";
+import vegan from "./vegan.png"
+import vegetarian from "./vegetarian.png"
+import peanut from "./peanut.png"
 
 
 const OutputDisplay = ({isCaptureMode}) => {
@@ -12,7 +16,7 @@ const OutputDisplay = ({isCaptureMode}) => {
   useEffect(() => {
 
     const interval = setInterval(() => {
-      fetch('http://127.0.0.1:5000/text')
+      fetch(`https://${SERVER_URL}/text`)
       .then(response => response.text())
       .then(data => {setOutput(data)})
       .catch(error => console.log(error));},2000)
@@ -46,6 +50,15 @@ const OutputDisplay = ({isCaptureMode}) => {
           {output}
         </Typography>
       </Box>
+
+
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+        <img src= {vegan} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
+        <img src= {vegetarian} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        <img src= {peanut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+      
+      </Box>
+
     </Box>
   );
 

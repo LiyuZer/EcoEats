@@ -7,9 +7,8 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
-from google.cloud import vision
-from google.oauth2.service_account import Credentials
-from google.cloud import vision_v1
+import cv2
+import numpy as np 
 
 credentials = Credentials.from_service_account_file('/Users/liyuzerihun/EcoEats/hack-eco-a2b68f2e4484.json')
 client = vision.ImageAnnotatorClient(credentials=credentials)
@@ -61,5 +60,15 @@ def send_text():
     return str(output)
 
 
+IS_PRODUCTION_BUILD = False
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    if IS_PRODUCTION_BUILD:
+        app.run(
+            debug=True,
+            host='0.0.0.0',
+            port=443,
+            ssl_context=("/etc/letsencrypt/live/ecoeats.xyz/fullchain.pem", "/etc/letsencrypt/live/ecoeats.xyz/privkey.pem")
+        )
+    else:
+        app.run(debug=True)
