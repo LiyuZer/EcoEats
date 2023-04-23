@@ -9,6 +9,7 @@ import treenut from "./treenut.png"
 import egg from "./egg.png"
 import dairy from "./dairy.png"
 import gluten from "./gluten.png"
+import Tooltip from '@mui/material/Tooltip';
 
 const OutputDisplay = ({isCaptureMode}) => {
   const [output, setOutput] = React.useState('');
@@ -53,13 +54,27 @@ const OutputDisplay = ({isCaptureMode}) => {
 
 
       <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <img src= {vegan} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
+        <Tooltip title="Vegan">
+         <img src= {vegan} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
+        </Tooltip>
+        <Tooltip title="Vegetarian">
         <img src= {vegetarian} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
+        <Tooltip title="Peanut">
         <img src= {peanut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
+        <Tooltip title="Gluten">
         <img src = {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
+        <Tooltip title="Treenut">
         <img src = {treenut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
+        <Tooltip title="Dairy">
         <img src = {dairy} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
+        <Tooltip title="Egg">
         <img src = {egg} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </Tooltip>
       </Box>
     </Box>
   );
