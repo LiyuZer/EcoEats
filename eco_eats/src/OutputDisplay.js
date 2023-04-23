@@ -19,7 +19,7 @@ const OutputDisplay = ({isCaptureMode}) => {
   useEffect(() => {
 
     const interval = setInterval(() => {
-      fetch(`http://${SERVER_URL}:5000/text`)
+      fetch(`https://${SERVER_URL}:5000/text`)
       .then(response => response.text())
       .then(data => {setOutput(data)})
       .catch(error => console.log(error));},2000)
