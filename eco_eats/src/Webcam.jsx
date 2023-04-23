@@ -28,14 +28,15 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
 
   return (
   <>
-    <Box width="100%" display="flex" flexDirection="column" alignItems="center">
+    <Box maxWidth="100%" display="flex" flexDirection="column" alignItems="center">
     {isCaptureMode && 
       
-        <Box width="85vw">
+        <Box>
           <Webcam
             audio={false}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
+            width="280"
           >
             {({ getScreenshot }) => (
               <Box m={1}>
@@ -64,6 +65,7 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
         <img
           src={imgSrc}
           alt="your capture here"
+          width={280}
         />
         <Box m={1}>
           <Button
