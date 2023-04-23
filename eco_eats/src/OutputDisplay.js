@@ -14,7 +14,7 @@ import myImage from './logo.png';
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
-  const [list, setList] = React.useState('1111000');
+  const [list, setList] = React.useState('0000000');
   function returnIcon(i){
     console.log(list)
     if(list.at(i)==='0'){
