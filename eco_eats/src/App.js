@@ -17,7 +17,7 @@ function App() {
 // },[]);
   return (
     <div className="App">
-      <Box display="flex" flexDirection="row" m={1} width="100%" justifyContent="center">
+      <Box display="flex" flexDirection="row" m={1} mb={-1} width="100%" justifyContent="center">
         <Typography variant="h3" style={{ fontFamily: 'Yatra One' }}>
           Eco Eats
         </Typography>
@@ -32,6 +32,9 @@ function App() {
           }}
         />
       </Box>
+      <Typography variant="subtitle2" style={{ fontFamily: 'Yatra One' }}>
+          Let's taco 'bout sustainable eating!
+      </Typography>
       <WebcamCapture 
         isCaptureMode={isCaptureMode}
         setIsCaptureMode={setIsCaptureMode}
