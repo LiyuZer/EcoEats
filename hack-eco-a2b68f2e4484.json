@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hack-eco",
+  "private_key_id": "a2b68f2e4484b4d6ab108d296cf8d5d1fc509c9a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDiCbn6qsIAUuq1\nWF6DQt7AjEPq76bFVfJ1p7wXoTgpip7d7GUkaQMn6oVobfzbg0O2ZCLBE72ZVNaH\nJZQVROzzcvO9Viq4X51WSAR+9DTeC+WD7DQQ9j6yZ1B6rjHaWf8mOIsWvpPDFoy/\nTMZjw33mKvS0ZKWvR17j59ZLuesobR7IVSw8NTKNDxVD/xjf/BPh+JMTGCN6utqP\nhUwcSHOmF/bUdmso6DdErdHrDMD/ylxaZhhBm+od+QEiXDLHGEfc9aS0O8DHAYjC\nZ4gdAZclu8Sa/EzZ/l8CZgJfhvsqP1s1dHe2VNQ+AtkmtXVPsysopKxqbO0KKCVY\nWeg8XKq3AgMBAAECggEAPyemjfH96GdCas65AYXChRvrsg2plANSjisCc7u43Gp9\nvtXY4JZyqkltYuMwPgjr9179EuM4G0pH8lS+jj7G0bJxhZo4r3EPndbbYrlKuCus\nwfJSDdcvZ1tUciKPjUmN75jmy8ENufln8984oxEw8QlZe7mPTWzsh1L0Xg4hNRbZ\nkNFcBd3oXc3IOtdFP1r8/B8b0mGvS4Tqtc0i7h3jkENGaJmDL5TL922jzavSgmnk\nrDrL1r2BM7EB6TNf9ZXkfSwXXxWnu75hRQHEicYhl0m4HW7GUP7L45676GvC44Qo\nat6AGipPh377JKsacKsiiFRwd81PRPE5RVDLUfRLuQKBgQDyTAMCyEWqrbtlU7Mz\n2t1j4iNak2YW0I7CsVBkQ7WlJtu5Gu2QoCHE565UnoqPARNL8cFg3KaiIcuFkXMC\nRHUbrutTdRoKIigsYqFSvMlw6rMgxy1YEOE0uZcDas8Argzj50Q6TvP4FBio6eWr\n4ADPFbO4hN6pctQ3zdfe1ccx1QKBgQDu0lEr6QnotN2T/x96DyQF+ppSKRQEO0ZN\nxHTXzn71Y5ydTF/oQxFciUtU0gsMrWJIvDMGTsetVAPo5FfxLa3Pkiz7WNBVo/d5\nmi9Zd2PR4R6nY+w1DtV854ImmlothlGIMZXLu1AA6+5t+yeuimtyaJnl3uduhbD6\n8OMxh1wkWwKBgGOdXJ+INxw00RaXktV+5gZqsp5Ke25l0Eu7GpIeRE/h6fPwXjtX\nmoqZtdKUW+LvTj+q5RYtoVSHEGWZpu8Hth3rjFSDkHEaGeoloq2hcDA8Tejr+nh6\neBx1MOD2yKQ+6o3IRwSx8RvNJ1ZK02IWdj6tbXYvKlwAGb/XoSi8O2kBAoGAOVqj\nCdOWgJ9nE1LSwWJ/eTwc8ZxR5U5C7QxAL0+1J8N7aj9cTRBGTB3gzIcBBlNhZixk\naKBkzdh+c+Dayd35fv8Q9G/44IhXN4ny0x6cB1x0GykhIgDk/nEuzYyGGabHT9jw\nq5PZe88tXJZTilRNx5UdWJo2pFFRFoLhXRSv6T8CgYA3xWlQ6zzI1ZxTwC8vK5az\nbjWQXnF21GstF/TVUd3dhk5xZ8wqmyzm77Jrb8RJkE465X2JBPgp3TG/8vO1c3zi\n3yK2G2AqdSHcOYSEXGP5nqWgvv1b6vXVlTgOF1Nser3+Eg6wraSAPFk+szTajho+\nTz8r+MUo5xf6mKMjaHQE+g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "visionapi@hack-eco.iam.gserviceaccount.com",
+  "client_id": "107631958528839475198",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/visionapi%40hack-eco.iam.gserviceaccount.com"
+}
