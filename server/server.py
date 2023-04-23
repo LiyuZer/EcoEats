@@ -15,6 +15,7 @@ def handle_image():
     global output, my_dict
     s=request.json['data']
     uid = request.json['uniqueID']
+    my_dict[uid]=""
     print("Posting right now to this uid")
     print(uid)
     my_dict[uid]=image_text.return_statement(s)
