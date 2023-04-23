@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { SERVER_URL } from "./App";
 import vegan from "./vegan.png"
@@ -35,7 +35,10 @@ const HIGH_CARBON_ITEMS = [
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
-  const [list, setList] = React.useState('0000000');
+  const [list, setList] = React.useState('00000000000000');
+  const [isOutputLoading, setIsOutputLoading] = React.useState(false);
+  const [isIconsLoading, setIsIconsLoading] = React.useState(false);
+
   function returnIcon(i){
     console.log(list)
     if(list.at(i)==='0'){
@@ -47,19 +50,37 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   }
 
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-    fetch(`${SERVER_URL}/text?param1=${currentUUID}`)
-      .then(response => response.text())
-      .then(data => {setOutput(data)})
-      .catch(error => console.log(error));
+  React.useEffect(() => {
+    const myInterval = setInterval(() => {
+      fetch(`${SERVER_URL}/text?param1=${currentUUID}`)
+        .then(response => response.text())
+        .then(data => {if (data !== output && data !== "UUID not found" && data !== "") {
+          setOutput(data);
+          setIsOutputLoading(false);
+        }})
+        .catch(error => console.log(error));
 
       fetch(`${SERVER_URL}/icons?param1=${currentUUID}`)
-      .then(response => response.text())
-      .then(data => {setList(data)})
-      .catch(error => console.log(error));
-    },2000);  
-  },[]);
+        .then(response => response.text())
+        .then(data => {
+          if (data !== list) {
+            setList(data);
+            setIsIconsLoading(false);
+          }
+        })
+        .catch(error => console.log(error));
+    },2000);
+  }, [])
+
+
+  React.useEffect(() => {
+    if (!isCaptureMode) {
+      setIsIconsLoading(true);
+      setIsOutputLoading(true);
+      setList("000000000000000000"); // string that will not collide with other strings provided by server but still behave well if interpreted by our client
+    }
+  }, [isCaptureMode])
+
 
   if (isCaptureMode) {
     return (
@@ -89,6 +110,10 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
     numClouds = 2;
   }
 
+  if (isIconsLoading) {
+    numClouds = 0;
+  }
+
   // if there's an ingredient in HIGH_CARBON_ITEMS then numClouds = 3;
   output.split(",")
     .map(s => s.trim())
@@ -104,17 +129,18 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
 
   return (
     <Box>
+      
+      {isOutputLoading ? 
       <Box>
-        <Typography variant="body2">
-          {output}
-        </Typography>
+        <CircularProgress />
       </Box>
-
+      :
       <Box>
         <Typography variant="body2" color="#1e3fae" sx={{ fontWeight: 'bold' }}>
           {output}
         </Typography>
       </Box>
+      }
 
 
       <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
