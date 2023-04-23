@@ -9,6 +9,11 @@ from PIL import Image
 from pytesseract import pytesseract
 from google.cloud import vision_v1
 from google.oauth2.service_account import Credentials
+import cohere
+import numpy as np
+
+co = cohere.Client("KxcXAqpat6ZZcsJbuVniMMByng0JaBPrpIXy6Pwr")
+
 
 credentials = Credentials.from_service_account_file('..//hack-eco-a2b68f2e4484.json')
 client = vision_v1.ImageAnnotatorClient(credentials=credentials)
@@ -44,7 +49,21 @@ def handle_image():
     response = client.text_detection(image=vision_v1.types.Image(content=img_bytes))
     text = response.full_text_annotation.text
     global output
-    output=text
+
+    input =  text
+    prompt = input + "\n isolate all words after the word INGREDIENTS until empty line"
+
+    response = co.generate(  
+    model='command-xlarge-nightly',  
+    prompt = prompt,  
+    max_tokens=200,  
+    temperature=0.750)
+
+    intro_paragraph = response.generations[0].text
+    print(text)
+    output=intro_paragraph
+
+
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
     # cv2.waitKey(0)

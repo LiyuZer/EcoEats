@@ -11,32 +11,32 @@ import dairy from "./dairy.png"
 import gluten from "./gluten.png"
 import Tooltip from '@mui/material/Tooltip';
 
-const OutputDisplay = ({isCaptureMode}) => {
+const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
 
 
 
 
   useEffect(() => {
-
     const interval = setInterval(() => {
-      fetch(`https://${SERVER_URL}/text`)
+    axios.get(`https://${SERVER_URL}/text`, {uniqueID: currentUUID})
       .then(response => response.text())
       .then(data => {setOutput(data)})
-      .catch(error => console.log(error));},2000)
-    },[]);
+      .catch(error => console.log(error));}, 2000)
+    }
+  ,[]);
 
-      if (isCaptureMode) {
-        return (
-          <Box>
-            <Box>
-              <Typography variant="body2">
-                {output}
-              </Typography>
-            </Box>
-          </Box>
-        );
-      }
+  if (isCaptureMode) {
+    return (
+      <Box>
+        <Box>
+          <Typography variant="body2">
+            Press the "capture photo" button to see ingredient information!
+          </Typography>
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box>
