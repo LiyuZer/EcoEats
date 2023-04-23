@@ -25,9 +25,6 @@ const OutputDisplay = ({isCaptureMode}) => {
       .catch(error => console.log(error));},2000)
     },[]);
 
-
-
-
       if (isCaptureMode) {
         return (
           <Box>

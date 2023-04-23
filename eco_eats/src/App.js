@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Box m={1}>
-        <Typography variant="h3">
+        <Typography variant="h3" style={{ fontFamily: 'Yatra One' }}>
           Eco Eats
         </Typography>
       </Box>
