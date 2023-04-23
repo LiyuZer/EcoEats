@@ -20,7 +20,7 @@ const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
   const sendImage = async (imgSrc) => {
     console.log("I am here");
     try {
-      const response = await axios.post(`https://${SERVER_URL}:5000/image`, { data: imgSrc });
+      const response = await axios.post(`https://${SERVER_URL}/image`, { data: imgSrc });
     } catch (error) {
       console.error(error);
     }
