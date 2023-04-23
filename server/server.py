@@ -7,9 +7,12 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
-import cv2
-import numpy as np 
+from google.cloud import vision
+from google.oauth2.service_account import Credentials
+from google.cloud import vision_v1
 
+credentials = Credentials.from_service_account_file('/Users/liyuzerihun/EcoEats/hack-eco-a2b68f2e4484.json')
+client = vision.ImageAnnotatorClient(credentials=credentials)
 
 app = Flask(__name__)
 ##cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -29,14 +32,20 @@ def handle_image():
     base64_data = s.split(',')[1]
     binary_data = base64.b64decode(base64_data)
     image = Image.open(BytesIO(binary_data))
-    gray_img = image.convert('L')
     # ret, binary_img = cv2.threshold(np.array(gray_img), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     # pil_img = Image.fromarray(binary_img)
     # pil_img.show()
-    text = pytesseract.image_to_string(gray_img)
+    #text = pytesseract.image_to_string(gray_img)
+    # Open the image file
+
+    # Convert PIL.Image object to bytes
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='PNG')
+    img_bytes = img_byte_arr.getvalue()
+    response = client.text_detection(image=vision_v1.types.Image(content=img_bytes))
+    text = response.full_text_annotation.text
     global output
-    output=text[:-1]
-    print(text[:-1])
+    output=text
     # save the processed image
     # cv2.imshow("Processed Image", sharpened)
     # cv2.waitKey(0)
