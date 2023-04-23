@@ -14,7 +14,7 @@ import myImage from './logo.png';
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
-  const [list, setList] = React.useState('0000000');
+  const [list, setList] = React.useState('1111000');
   function returnIcon(i){
     console.log(list)
     if(list.at(i)==='0'){
@@ -92,23 +92,15 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
         </div>:
         <div></div>
         } 
-        {returnIcon(3) ?
-        <div>
-        <Tooltip title="Gluten">
-         <img src= {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
-        </Tooltip>
-        </div>:
-        <div></div>
-        } 
-        {returnIcon(4)?
+        {returnIcon(3)?
         <div>
         <Tooltip title="Treenut">
          <img src= {treenut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
         </div>:
         <div></div>
-        } 
-      {returnIcon(5) ?
+        }
+        {returnIcon(4) ?
         <div>
         <Tooltip title="Dairy">
          <img src= {dairy} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
@@ -116,6 +108,14 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
         </div>:
         <div></div>
         } 
+        {returnIcon(5) ?
+        <div>
+        <Tooltip title="Gluten">
+         <img src= {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
+        </Tooltip>
+        </div>:
+        <div></div>
+        }
         {returnIcon(6) ?
         <div>
         <Tooltip title="Egg">
