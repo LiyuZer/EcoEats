@@ -1,6 +1,9 @@
 import pandas as pd
 import cohere
 import numpy as np
+
+
+co = cohere.Client("KxcXAqpat6ZZcsJbuVniMMByng0JaBPrpIXy6Pwr")
 food = pd.read_csv("classifier.csv")
 non_vegan = list(food["Not Vegan"])
 non_vegetarian = list(food["Not Vegetarian"].dropna())
@@ -9,7 +12,6 @@ non_tree_nuts_free = list(food["not tree nuts free"].dropna())
 non_dairy_free = list(food["Not Dairy Free"].dropna())
 non_egg_free = list(food["Not Egg free"].dropna())
 non_gluten_free = list(food["Not Gluten"].dropna())
-
 non_vegan = [element.lower() for element in non_vegan]
 non_vegetarian = [element.lower() for element in non_vegetarian]
 non_peanut_free = [element.lower() for element in non_peanut_free]
@@ -18,7 +20,9 @@ non_dairy_free = [element.lower() for element in non_dairy_free]
 non_egg_free = [element.lower() for element in non_egg_free]
 non_gluten_free = [element.lower() for element in non_gluten_free]
 
-co = cohere.Client("J9UBXrAUMKy4nLPbyyefYojUp9NQYosMNBcq9XQi")
+
+
+
 
 def calculate_similarity(a, b):
   a = np.array(a).flatten()
@@ -41,7 +45,9 @@ def is_vegan(ingredients):
 
 def is_vegetarian(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
+
     for ingredient in ingredients:
+        print(ingredient)
         if ingredient in non_vegetarian:
             return False
     return True
@@ -81,11 +87,42 @@ def is_gluten_free(ingredients):
             return False
     return True
 
-test = ["WHITE WHEAT FLOUR", "SUGAR", "WICLFLOUR", "CANOLA OIL", "FRUCTOSE", "PEANUTS", "DEXTROSE", "UEXTRIN", "SALT", "CALCIUM CARBONATE", "EGG", "CINNAMON","TAISODIL", "SODIUM ASCOR-BANE", "COLOIWIN", "NATUVITAMIN & PALI2 YSU Â© Protein 4"]
-print("VEGAN", is_vegan(test))
-print("VEGETARIAN", is_vegetarian(test))
-print("PEANUT FREE", is_peanut_free(test))
-print("TREENUT FREE", is_tree_nuts_free(test))
-print("DAIRY FREE", is_dairy_free(test))
-print("GLUTEN FREE", is_gluten_free(test))
-print("EGG FREE", is_egg_free(test))
+
+def return_string(test):
+    s=""
+    if is_vegan(test):
+        s+=("1")
+    else:
+        s +=  "0"
+
+    if is_vegetarian(test):
+        s +=  "1"
+    else:
+        s +=  "0"
+
+    if is_peanut_free(test):
+        s +=  "0"
+    else:
+        s +=  "1"
+
+    if is_tree_nuts_free(test):
+        s +=  "0"
+    else:
+        s +=  "1"
+
+    if is_dairy_free(test):
+        s +=  "0"
+    else:
+        s +=  "1"
+
+    if is_gluten_free(test):
+        s +=  "0"
+    else:
+        s +=  "1"
+
+    if is_egg_free(test):
+        s +=  "0"
+    else:
+        s +=  "1"
+
+    return s

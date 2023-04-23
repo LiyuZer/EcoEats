@@ -14,6 +14,16 @@ import myImage from './logo.png';
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
+  const [list, setList] = React.useState('0000000');
+  function returnIcon(i){
+    console.log(list)
+    if(list.at(i)==='0'){
+      return false
+    }
+    else{
+      return true
+    }
+  }
 
 
   useEffect(() => {
@@ -21,9 +31,14 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
     fetch(`${SERVER_URL}/text?param1=${currentUUID}`)
       .then(response => response.text())
       .then(data => {setOutput(data)})
-      .catch(error => console.log(error));}, 2000)
-    }
-  ,[]);
+      .catch(error => console.log(error));
+
+      fetch(`${SERVER_URL}/icons?param1=${currentUUID}`)
+      .then(response => response.text())
+      .then(data => {setList(data)})
+      .catch(error => console.log(error));
+    },2000);  
+  },[]);
 
   if (isCaptureMode) {
     return (
@@ -53,27 +68,62 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
 
 
       <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+        {returnIcon(0) ?
+        <div>
         <Tooltip title="Vegan">
          <img src= {vegan} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
-        <Tooltip title="Vegetarian">
-        <img src= {vegetarian} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+        </div>:
+        <div></div>
+        }  
+        {returnIcon(1)?
+        <div>
+        <Tooltip title="Vegeterian">
+         <img src= {vegetarian} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
+        {returnIcon(2) ?
+        <div>
         <Tooltip title="Peanut">
-        <img src= {peanut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+         <img src= {peanut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
+        {returnIcon(3) ?
+        <div>
         <Tooltip title="Gluten">
-        <img src = {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+         <img src= {gluten} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
+        {returnIcon(4)?
+        <div>
         <Tooltip title="Treenut">
-        <img src = {treenut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+         <img src= {treenut} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
+      {returnIcon(5) ?
+        <div>
         <Tooltip title="Dairy">
-        <img src = {dairy} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+         <img src= {dairy} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
+        {returnIcon(6) ?
+        <div>
         <Tooltip title="Egg">
-        <img src = {egg} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px'}} />
+         <img src= {egg} style={{ width: '50px', height: '50px', marginRight: '10px', marginBottom: '10px' }} />
         </Tooltip>
+        </div>:
+        <div></div>
+        } 
       </Box>
     </Box>
   );
