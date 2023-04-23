@@ -51,7 +51,7 @@ def handle_image():
     global output
 
     input =  text
-    prompt = input + "\n isolate after label INGREDIENTS all words that are ingredients"
+    prompt = input + "\n isolate all words after the word INGREDIENTS until empty line"
 
     response = co.generate(  
     model='command-xlarge-nightly',  
