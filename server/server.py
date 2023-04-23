@@ -15,7 +15,7 @@ def handle_image():
     global output, my_dict
     s=request.json['data']
     uid = request.json['uniqueID']
-    print("Post")
+    print("Posting right now to this uid")
     print(uid)
     my_dict[uid]=image_text.return_statement(s)
     return "Submitted"
@@ -26,12 +26,12 @@ def handle_image():
 def sendText():
     global my_dict
     uuid=request.args.get('param1')
-    print("Get")
+    print("Geting right now from this UID")
     print(uuid)
     if uuid in my_dict.keys():
         return str(my_dict[request.args.get('param1')])
     else:
-        return "UUID not found", 404
+        return "Waiting for Image :)", 404
 
 
 @app.route('/icons', methods=['GET'])
@@ -39,6 +39,7 @@ def sendText():
 def sendIconList():
     global my_dict
     uuid=request.args.get('param1')
+    print("Getting for the icon list")
     if uuid in my_dict.keys():
         word_list = my_dict[uuid].split(', ')
         print(my_dict[uuid])
