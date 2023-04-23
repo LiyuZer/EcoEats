@@ -1,7 +1,8 @@
+## ECO EATS
+Introducing Eco Eats, a game-changing solution that revolutionizes the way we consume and interact with our food. Eco Eats analyzes scanned ingredient lists and provides a comprehensive eco-score based on factors such as carbon footprint as well as information vegan, vegetarian, egg, gluten, and other dietary restrictions.Our app allows users to snap a quick picture of any ingredients list. It then uses Google Vision's API and Cohere to output a summary of the ingredients list, and also displays icons based on whether the items are vegan/vegetarian friendly, and whether the items contain any common allergens. Eco eats will also calculate whether an item has a low, medium, or high carbon footprint by detecting ingredients that generally have a large carbon footprint.
+
 ## RUNNING ECO EATS
 Go to eco-eats.tech. Take a picture of the ingredients on any food label. Immediately get information nutrient information as well as the carbon footprint of the product
-
-Summary: Introducing Eco Eats, a game-changing solution that revolutionizes the way we consume and interact with our food. Eco Eats analyzes scanned ingredient lists and provides a comprehensive eco-score based on factors such as carbon footprint as well as information vegan, vegetarian, egg, gluten, and other dietary restrictions.Our app allows users to snap a quick picture of any ingredients list. It then uses Google Vision's API and Cohere to output a summary of the ingredients list, and also displays icons based on whether the items are vegan/vegetarian friendly, and whether the items contain any common allergens. Eco eats will also calculate whether an item has a low, medium, or high carbon footprint by detecting ingredients that generally have a large carbon footprint.
 
 # Getting Started with Create React App
 
