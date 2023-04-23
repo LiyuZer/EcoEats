@@ -52,5 +52,14 @@ def send_text():
     return str(output)
 
 
+IS_PRODUCTION_BUILD = False
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    if IS_PRODUCTION_BUILD:
+        app.run(
+            debug=True,
+            host='0.0.0.0',
+            ssl_context=("/etc/letsencrypt/live/ecoeats.xyz/fullchain.pem", "/etc/letsencrypt/live/ecoeats.xyz/privkey.pem")
+        )
+    else:
+        app.run(debug=True)
