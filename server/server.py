@@ -7,7 +7,6 @@ from io import BytesIO
 from PIL import Image
 from PIL import Image
 from pytesseract import pytesseract
-import cv2
 import numpy as np 
 
 
