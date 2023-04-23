@@ -33,7 +33,7 @@ def is_vegan(ingredients):
     ingredient_embeddings = co.embed(ingredients).embeddings
     vegan_embeddings = co.embed(non_vegan).embeddings
     for ingredient in ingredients:
-        if ingredient in non_vegan:
+        if ingredient.strip() in non_vegan:
             return False            
     for i, ing_embedding in enumerate(ingredient_embeddings):
         for j, veg_embedding in enumerate(vegan_embeddings):
@@ -48,42 +48,42 @@ def is_vegetarian(ingredients):
 
     for ingredient in ingredients:
         print(ingredient)
-        if ingredient in non_vegetarian:
+        if ingredient.strip() in non_vegetarian:
             return False
     return True
 
 def is_peanut_free(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
     for ingredient in ingredients:
-        if ingredient in non_peanut_free:
+        if ingredient.strip() in non_peanut_free:
             return False
     return True
 
 def is_tree_nuts_free(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
     for ingredient in ingredients:
-        if ingredient in non_tree_nuts_free:
+        if ingredient.strip() in non_tree_nuts_free:
             return False
     return True
 
 def is_dairy_free(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
     for ingredient in ingredients:
-        if ingredient in non_dairy_free:
+        if ingredient.strip() in non_dairy_free:
             return False
     return True
 
 def is_egg_free(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
     for ingredient in ingredients:
-        if ingredient in non_egg_free:
+        if ingredient.strip() in non_egg_free:
             return False
     return True
 
 def is_gluten_free(ingredients):
     ingredients = [ingredient.lower() for ingredient in ingredients]
     for ingredient in ingredients:
-        if ingredient in non_gluten_free:
+        if ingredient.strip() in non_gluten_free:
             return False
     return True
 
