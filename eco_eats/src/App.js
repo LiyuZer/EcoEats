@@ -7,6 +7,7 @@ import { Typography, Box } from '@mui/material';
 
 function App() {
   const [isCaptureMode, setIsCaptureMode] = React.useState(true);
+  const [currentUUID, setCurrentUUID] = React.useState("");
 
   return (
     <div className="App">
@@ -18,8 +19,9 @@ function App() {
       <WebcamCapture 
         isCaptureMode={isCaptureMode}
         setIsCaptureMode={setIsCaptureMode}
+        setCurrentUUID={setCurrentUUID}
       />
-      <OutputDisplay isCaptureMode={isCaptureMode}/>
+      <OutputDisplay isCaptureMode={isCaptureMode} currentUUID={currentUUID}/>
 
     </div>
   );

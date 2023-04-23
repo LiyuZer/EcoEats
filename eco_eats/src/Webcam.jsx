@@ -3,6 +3,8 @@ import Webcam from "react-webcam";
 import { Button, Box } from '@mui/material';
 import axios from 'axios';
 import { SERVER_URL } from "./App";
+import {v4 as uuidv4} from 'uuid';
+
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -13,14 +15,20 @@ const videoConstraints = {
   facingMode: "environment"
 };
 
-const WebcamCapture = ({ isCaptureMode, setIsCaptureMode }) => {
+const WebcamCapture = ({ isCaptureMode, setIsCaptureMode, setCurrentUUID }) => {
 
   const [imgSrc, setImgSrc] = React.useState(null);
 
   const sendImage = async (imgSrc) => {
     console.log("I am here");
     try {
-      const response = await axios.post(`https://${SERVER_URL}/image`, { data: imgSrc });
+      const myuuid = uuidv4();
+      setCurrentUUID(myuuid);
+
+
+
+      console.log("UUID IS " + myuuid);
+      const response = await axios.post(`https://${SERVER_URL}/image`, { data: imgSrc, uniqueID: myuuid });
     } catch (error) {
       console.error(error);
     }
