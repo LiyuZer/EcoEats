@@ -79,7 +79,7 @@ const OutputDisplay = ({isCaptureMode, currentUUID}) => {
 
   let numClouds = 0;
 
-  if (isVegan && isVegetarian) {
+  if (isVegan || isVegetarian) {
     numClouds = 1;
   }
   else if (hasEgg) {
