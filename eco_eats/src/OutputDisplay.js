@@ -10,13 +10,10 @@ import egg from "./egg.png"
 import dairy from "./dairy.png"
 import gluten from "./gluten.png"
 import Tooltip from '@mui/material/Tooltip';
+import myImage from './logo.png';
 
 const OutputDisplay = ({isCaptureMode, currentUUID}) => {
   const [output, setOutput] = React.useState('');
-
-
-
-
   useEffect(() => {
     const interval = setInterval(() => {
     axios.get(`https://${SERVER_URL}/text`, {uniqueID: currentUUID})
